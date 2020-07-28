@@ -8,15 +8,17 @@ public class Percolation {
 
     private boolean grid[][];
     private WeightedQuickUnionUF unionDataStructure;
+    private int num_open_sites = 0;
 
     private void initGrid(int n) {
+        //initializes all squares to false
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
                 grid[i][j] = false;
             }
         }
 
-        unionDataStructure = new WeightedQuickUnionUF(n*n+2);
+        unionDataStructure = new WeightedQuickUnionUF(((n*n)+2));
 
         //top virtual site
         for(int i = 0; i < n; i++) {
@@ -30,15 +32,17 @@ public class Percolation {
     }
 
     private void checkValidArguments(int row, int col) {
-        if(row >= grid.length) {
+        if(row > grid.length) {
             throw new IllegalArgumentException();
-        } else if (col >= grid[0].length) {
+        } else if (col > grid[0].length) {
             throw new IllegalArgumentException();
         }
     }
 
     private int xyToNum(int row, int col) {
-        return (grid.length * row) + col;
+        int num = (grid.length * row) + col;
+
+        return num;
     }
 
     // creates n-by-n grid, with all sites initially blocked
@@ -50,30 +54,32 @@ public class Percolation {
 
     // opens the site (row, col) if it is not open already
     public void open(int row, int col) {
-        checkValidArguments(row, col);
+
         int n = grid.length;
+
+        checkValidArguments(row, col);
 
         if(grid[row-1][col-1] == false) {
             grid[row-1][col-1] = true;
+            num_open_sites++;
         }
-        /* check if the 2 squares next to it are true */
 
-        /* square to the left is filled */
+        // square to the left is open
         if(col > 1 && grid[row-1][col-2]) {
             unionDataStructure.union(xyToNum(row-1, col-1), xyToNum(row-1, col-2));
         }
 
-        /* square to the right is filled */
+        // square to the right is open
         if(col < n && grid[row-1][col]) {
             unionDataStructure.union(xyToNum(row-1, col-1), xyToNum(row-1, col));
         }
 
-        /* square above is filled */
+        // square above is open
         if(row > 1 && grid[row-2][col-1]) {
             unionDataStructure.union(xyToNum(row-1, col-1), xyToNum(row-2, col-1));
         }
 
-        /* square below is filled */
+        // square below is open
         if(row < n && grid[row][col-1]) {
             unionDataStructure.union(xyToNum(row-1, col-1), xyToNum(row, col-1));
         }
@@ -89,38 +95,36 @@ public class Percolation {
     public boolean isFull(int row, int col) {
         int n = grid.length;
 
-        /* if the set in mind is connected to the top virtual set or the bottom virtual set, return true */
+        // if the set in mind is connected to the top virtual set or the bottom virtual set, return true
         if(unionDataStructure.find(xyToNum(row-1, col-1)) == unionDataStructure.find(xyToNum(n, 0))) {
             return true;
-        } else if (unionDataStructure.find(xyToNum(row-1, col-1)) == unionDataStructure.find(xyToNum(n+1, 1))) {
+        } else if (unionDataStructure.find(xyToNum(row-1, col-1)) == unionDataStructure.find(xyToNum(n, 1))) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     // returns the number of open sites
     public int numberOfOpenSites() {
-        return 0;
+        return num_open_sites;
     }
 
     // does the system percolate?
     public boolean percolates() {
+        int n = grid.length;
+        if(unionDataStructure.find(xyToNum(n, 0)) == unionDataStructure.find(xyToNum(n, 1))) {
+            return true;
+        }
         return false;
     }
 
     // test client (optional)
     public static void main(String[] args) {
-        Percolation theMain = new Percolation(10);
+        Percolation theMain = new Percolation(2);
         theMain.open(1,1);
+        theMain.open(2,2);
         theMain.open(1,2);
-        theMain.open(1,3);
-        if(theMain.isOpen(3,3)) {
-            System.out.println("3, 3 is full");
-        }
-        if (theMain.isOpen(1,1)) {
-            System.out.println("1,1 is full");
-        } else {
-            System.out.println("1,1 is not full");
-        }
+        System.out.println(theMain.numberOfOpenSites());
     }
 }
