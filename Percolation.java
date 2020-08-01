@@ -1,7 +1,5 @@
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
-import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
@@ -54,7 +52,6 @@ public class Percolation {
 
     // opens the site (row, col) if it is not open already
     public void open(int row, int col) {
-
         int n = grid.length;
 
         checkValidArguments(row, col);
@@ -125,6 +122,7 @@ public class Percolation {
         theMain.open(1,1);
         theMain.open(2,2);
         theMain.open(1,2);
+        theMain.numberOfOpenSites();
         System.out.println(theMain.numberOfOpenSites());
     }
 }
