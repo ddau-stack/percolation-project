@@ -1,4 +1,4 @@
-# percolation-project
+# Percolation Project
 A java program that runs a Monte-Carlo simulation to find the percolation threshold to solve the dynamic connectivity problem. This program also outputs the mean, the standard deviation and the 95% confidence interval for the simulation.
 
 ## Dependencies
