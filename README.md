@@ -11,6 +11,7 @@ This project runs a Monte-Carlo simulation to find the percolation threshold to 
 ```
 
 ## Usage
+The program is run by the following command with 2 commandline arguments: a positive integer gridSize which represents a grid of n-by-n size and a positive integer numTrials representing the number of trials to be run.
 ```
-javac-algs4 PercolationStats.java gridSize
+javac-algs4 PercolationStats.java gridSize numTrials
 ```
