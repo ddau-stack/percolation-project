@@ -14,7 +14,7 @@ further instructions can be found at: https://lift.cs.princeton.edu/java/linux/
 ## Usage
 The program is run by the following command with 2 commandline arguments: a positive integer n which represents a desired grid size of n-by-n and a positive integer numTrials representing the number of trials to be run.
 ```
-javac-algs4 PercolationStats.java gridSize numTrials
+javac-algs4 PercolationStats.java n numTrials
 ```
 
 ## APIs Used
