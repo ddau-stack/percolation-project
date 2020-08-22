@@ -16,3 +16,11 @@ The program is run by the following command with 2 commandline arguments: a posi
 ```
 javac-algs4 PercolationStats.java gridSize numTrials
 ```
+
+## API Used
+WeightedQuickFindUnionUF: https://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/QuickFindUF.html
+StdRandom: https://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/StdRandom.html
+StdStats: https://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/StdStats.html
+
+## Credits
+Princeton University for providing the specifications and required libraries for the project.
