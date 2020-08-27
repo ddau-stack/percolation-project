@@ -2,7 +2,7 @@
 A java program that runs a Monte-Carlo simulation to find the percolation threshold to solve the dynamic connectivity problem. This program also outputs the mean, the standard deviation and the 95% confidence interval for the simulation.
 
 ## Dependencies
-1. University of Princeton online textbook libraries.
+1. Princeton University online textbook libraries.
 ```
 cd /usr/local
 sudo curl -O "https://lift.cs.princeton.edu/java/linux/lift-cli.zip"
@@ -23,4 +23,4 @@ StdRandom: https://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/St
 StdStats: https://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/StdStats.html
 
 ## Credits
-Princeton University for providing the specifications and required libraries for the project.
+Princeton University
